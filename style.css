@@ -1,0 +1,540 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg: #F5F5F2;
+    --dark: #202B35;
+    --muted: #858B91;
+    --accent: #DCE9F5;
+    --white: #FFFFFF;
+    --border: #E5E6E2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+}
+
+button, input, select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+#app {
+    width: 100%;
+    min-height: 100vh;
+    max-width: 1440px;
+    margin: auto;
+}
+
+.page {
+    display: none;
+    min-height: 100vh;
+}
+
+.page.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.topbar, .sub-header {
+    height: 82px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.brand-mark {
+    background: var(--dark);
+    color: white;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    font-family: 'Space Grotesk';
+    font-size: 18px;
+}
+
+.version, .eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--muted);
+}
+
+.hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 75px 15%;
+}
+
+.hero h1, .content h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(65px, 10vw, 120px);
+    line-height: .98;
+    letter-spacing: -7px;
+    margin: 25px 0;
+}
+
+.hero h1 span {
+    color: #8299AD;
+}
+
+.hero-description {
+    color: var(--muted);
+    max-width: 340px;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 35px;
+    flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+    min-height: 52px;
+    padding: 0 24px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: .2s ease;
+}
+
+.btn-primary {
+    background: var(--dark);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.btn-primary:hover {
+    background: #34485A;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--dark);
+}
+
+.btn-secondary:hover {
+    background: white;
+}
+
+.home-footer {
+    padding: 25px 7%;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+}
+
+.sub-header {
+    justify-content: flex-start;
+    gap: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.back-btn {
+    background: var(--white);
+    border: 1px solid var(--border);
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.content {
+    width: min(100% - 40px, 460px);
+    margin: 65px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.content h2 {
+    font-size: 55px;
+    letter-spacing: -3px;
+    margin: 18px 0 35px;
+}
+
+.content label {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 15px 0 8px;
+}
+
+.content input, .content select {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: white;
+    color: var(--dark);
+    outline: none;
+}
+
+.content input:focus, .content select:focus {
+    border-color: #8299AD;
+}
+
+.full-width {
+    width: 100%;
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    .topbar, .sub-header {
+        height: 68px;
+        padding: 0 22px;
+    }
+
+    .version {
+        font-size: 8px;
+    }
+
+    .hero {
+        padding: 65px 28px;
+    }
+
+    .hero h1 {
+        font-size: 76px;
+        letter-spacing: -5px;
+    }
+
+    .home-footer {
+        padding: 20px 22px;
+        font-size: 7px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-actions button {
+        width: 100%;
+    }
+
+    .content {
+        margin: 45px auto;
+    }
+}
+
+
+
+/* =================================
+   NUMBER BATTLE - WAITING ROOM
+================================= */
+
+.lobby-content {
+    max-width: 520px;
+}
+
+.room-code-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 22px;
+}
+
+.room-code-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 0;
+}
+
+.room-code-row strong {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 35px;
+    letter-spacing: 5px;
+}
+
+.room-code-card p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.copy-btn {
+    background: var(--accent);
+    color: var(--dark);
+    padding: 10px 15px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.lobby-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.lobby-info div {
+    background: #ECEDEA;
+    border-radius: 9px;
+    padding: 17px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lobby-info span {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+}
+
+.lobby-info strong {
+    font-size: 16px;
+}
+
+.players-section {
+    margin-bottom: 20px;
+}
+
+.players-heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.players-heading > span:last-child {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.player-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border: 1px solid var(--border);
+    padding: 17px;
+    border-radius: 9px;
+    margin-bottom: 9px;
+}
+
+.player-details {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.player-avatar {
+    width: 38px;
+    height: 38px;
+    background: var(--accent);
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-weight: 700;
+}
+
+.player-details strong {
+    font-size: 13px;
+}
+
+.player-details small {
+    display: block;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.player-status {
+    color: #52785D;
+    background: #E6EEE7;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+}
+
+.waiting-status {
+    text-align: center;
+    padding: 15px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+#start-game-btn:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+
+/* =================================
+   NUMBER BATTLE - GAME SETUP
+================================= */
+
+.setup-content {
+    max-width: 520px;
+}
+
+.setup-range-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 20px;
+}
+
+.setup-range-card strong {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    letter-spacing: -1px;
+}
+
+.setup-range-card p,
+.setup-note {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.setup-progress {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    background: #ECEDEA;
+    color: var(--dark);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.setup-note {
+    margin-top: 12px;
+}
+
+#submit-secret-btn:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .setup-content {
+        margin: 45px auto;
+    }
+}
+
+
+/* =========================================
+   NUMBER BATTLE - BATTLE ARENA 6.2
+========================================= */
+.battle-header {
+    justify-content: space-between;
+}
+.battle-header > div { display: flex; flex-direction: column; gap: 5px; }
+.battle-header strong { font-family: 'Space Grotesk', sans-serif; font-size: 13px; letter-spacing: 1px; }
+.battle-round { background: #E8EBE9; padding: 9px 13px; border-radius: 20px; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+.battle-content { width: min(100% - 40px, 760px); margin: 38px auto 70px; }
+.battle-status { padding: 14px 17px; background: #E9ECE9; border-radius: 9px; color: var(--dark); font-size: 13px; margin-bottom: 18px; text-align: center; }
+.battle-players { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.battle-player-card { background: #fff; border: 1px solid var(--border); border-radius: 11px; padding: 20px; min-width: 0; }
+.battle-player-card.mine { border-color: #B8C9D6; }
+.battle-player-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 13px; }
+.turn-indicator { font-size: 9px; font-weight: 700; letter-spacing: .8px; color: #42634D; background: #E6EEE7; border-radius: 20px; padding: 6px 9px; }
+.turn-indicator.waiting { color: var(--muted); background: #F0F1EF; }
+.battle-player-name { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 22px; margin-bottom: 20px; overflow-wrap: anywhere; }
+.battle-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.battle-stat-row div { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.battle-stat-row span { font-size: 9px; color: var(--muted); letter-spacing: 1px; }
+.battle-stat-row strong { font-size: 15px; overflow-wrap: anywhere; }
+.guess-panel { margin-top: 20px; padding: 26px; background: #fff; border: 1px solid var(--border); border-radius: 11px; }
+.guess-panel h2, .battle-result h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.05; letter-spacing: -2px; margin: 12px 0; }
+.guess-panel p, .battle-result p { color: var(--muted); font-size: 13px; line-height: 1.7; }
+.guess-panel label { display: block; margin: 22px 0 8px; font-size: 12px; font-weight: 600; }
+.guess-panel input { width: 100%; height: 54px; border: 1px solid var(--border); border-radius: 8px; padding: 0 15px; color: var(--dark); background: #fff; outline: none; }
+.guess-panel input:focus { border-color: #8299AD; }
+.guess-panel button:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+.guess-feedback { margin-top: 14px; padding: 13px 15px; border-radius: 8px; background: #F0F1EF; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.battle-history-section { margin-top: 28px; }
+.battle-history-heading { display: flex; justify-content: space-between; margin-bottom: 12px; }
+.battle-history-heading span:last-child { color: var(--muted); font-size: 11px; }
+.battle-history { display: flex; flex-direction: column; gap: 8px; }
+.history-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; }
+.history-item-main { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.history-item-main strong { font-size: 13px; }
+.history-item-main small { color: var(--muted); }
+.history-hint { font-size: 10px; font-weight: 700; letter-spacing: .8px; padding: 6px 9px; border-radius: 20px; white-space: nowrap; }
+.history-hint.higher { color: #315D79; background: #E5EEF5; }
+.history-hint.lower { color: #7A5A30; background: #F4EBDD; }
+.history-hint.correct { color: #42634D; background: #E6EEE7; }
+.history-empty { padding: 18px; color: var(--muted); text-align: center; font-size: 12px; background: #fff; border: 1px dashed var(--border); border-radius: 8px; }
+.battle-result { margin-top: 20px; padding: 26px; border-radius: 11px; border: 1px solid var(--border); background: #fff; }
+.battle-result[hidden] { display: none; }
+@media (max-width: 600px) {
+    .battle-content { width: min(100% - 28px, 760px); margin-top: 22px; }
+    .battle-players { grid-template-columns: 1fr; }
+    .battle-player-card { padding: 17px; }
+    .guess-panel { padding: 20px; }
+    .battle-header { padding: 0 16px; }
+    .battle-header strong { font-size: 11px; }
+}
+
+.guess-panel[hidden] { display: none; }
+
+
+/* Angka rahasia milik pemain sendiri */
+.battle-secret-display {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: #F0F3F4;
+}
+.battle-secret-display span {
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+.battle-secret-display strong {
+    color: var(--dark);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+}

@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F5F5F2">
+
+    <title>Number Battle</title>
+    <meta name="description" content="Permainan tebak angka untuk dua pemain.">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main id="app">
+
+        <!-- HOME PAGE -->
+        <section class="page active" id="home-page">
+
+            <header class="topbar">
+                <div class="brand">
+                    <span class="brand-mark">N.</span>
+                    <span>NUMBER BATTLE</span>
+                </div>
+
+                <span class="version">PERMAINAN DUO · 01</span>
+            </header>
+
+            <div class="hero">
+                <span class="eyebrow">PERMAINAN UNTUK BERDUA</span>
+
+                <h1>
+                    Pikirkan.<br>
+                    Tebak.<br>
+                    <span>Menang.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Dua pemain. Dua angka rahasia.
+                    Satu pertandingan logika dan strategi.
+                </p>
+
+                <div class="hero-actions">
+                    <button class="btn-primary" id="create-room-btn">
+                        Buat ruang
+                        <span>↗</span>
+                    </button>
+
+                    <button class="btn-secondary" id="join-room-btn">
+                        Gabung ruang
+                    </button>
+                </div>
+            </div>
+
+            <footer class="home-footer">
+                <span>DIBUAT UNTUK DUA PEMAIN</span>
+                <span>© 2026 NUMBER BATTLE</span>
+            </footer>
+
+        </section>
+
+        <!-- BUAT RUANG PAGE -->
+        <section class="page" id="create-page">
+            <header class="sub-header">
+                <button class="back-btn" data-back="home-page">←</button>
+                <span>BUAT RUANG</span>
+            </header>
+
+            <div class="content">
+                <span class="eyebrow">MARI MULAI</span>
+                <h2>Buat ruang<br>pertandingan.</h2>
+
+                <label for="player-name">Nama kamu</label>
+                <input type="text" id="player-name"
+                    placeholder="Masukkan nama kamu" maxlength="20">
+
+                <label for="min-number">Angka minimum</label>
+                <input type="number" id="min-number" value="1">
+
+                <label for="max-number">Angka maksimum</label>
+                <input type="number" id="max-number" value="100">
+
+                <label for="max-turns">Kesempatan setiap pemain</label>
+                <select id="max-turns">
+                    <option value="3">3 kali kesempatan</option>
+                    <option value="5" selected>5 kali kesempatan</option>
+                    <option value="6">6 kali kesempatan</option>
+                    <option value="10">10 kali kesempatan</option>
+                </select>
+
+                <button class="btn-primary full-width" id="confirm-create-btn">
+                    Lanjutkan →
+                </button>
+            </div>
+        </section>
+
+        <!-- GABUNG RUANG PAGE -->
+        <section class="page" id="join-page">
+            <header class="sub-header">
+                <button class="back-btn" data-back="home-page">←</button>
+                <span>GABUNG RUANG</span>
+            </header>
+
+            <div class="content">
+                <span class="eyebrow">GABUNG PERTANDINGAN</span>
+                <h2>Siap untuk<br>bertanding?</h2>
+
+                <label for="join-name">Nama kamu</label>
+                <input type="text" id="join-name"
+                    placeholder="Masukkan nama kamu" maxlength="20">
+
+                <label for="room-code">Kode ruang</label>
+                <input type="text" id="room-code"
+                    placeholder="Contoh: NB7621" maxlength="10">
+
+                <button class="btn-primary full-width" id="confirm-join-btn">
+                    Gabung pertandingan →
+                </button>
+            </div>
+        </section>
+
+
+
+        <!-- MENUNGGU ROOM PAGE -->
+        <section class="page" id="lobby-page">
+
+            <header class="sub-header">
+                <button class="back-btn" data-back="home-page">←</button>
+                <span>NUMBER BATTLE / RUANG TUNGGU</span>
+            </header>
+
+            <div class="content lobby-content">
+
+                <span class="eyebrow">RUANG BERHASIL DIBUAT</span>
+                <h2>Menunggu<br>lawan kamu.</h2>
+
+                <div class="room-code-card">
+                    <span class="eyebrow">KODE RUANG KAMU</span>
+
+                    <div class="room-code-row">
+                        <strong id="display-room-code">------</strong>
+                        <button id="copy-room-code" class="copy-btn">
+                            Salin
+                        </button>
+                    </div>
+
+                    <p>Bagikan kode ini kepada lawan kamu.</p>
+                </div>
+
+                <div class="lobby-info">
+                    <div>
+                        <span>RENTANG ANGKA</span>
+                        <strong id="display-range">1 – 100</strong>
+                    </div>
+
+                    <div>
+                        <span>KESEMPATAN</span>
+                        <strong id="display-attempts">5 kali</strong>
+                    </div>
+                </div>
+
+                <div class="players-section">
+                    <div class="players-heading">
+                        <span class="eyebrow">PEMAIN</span>
+                        <span id="player-count">1 / 2</span>
+                    </div>
+
+                    <div id="players-list"></div>
+                </div>
+
+                <div class="waiting-status" id="waiting-status">
+                    Menunggu pemain lain bergabung...
+                </div>
+
+                <button class="btn-primary full-width" id="start-game-btn" disabled>
+                    Menunggu lawan
+                </button>
+
+            </div>
+        </section>
+
+
+        <!-- GAME SETUP PAGE -->
+        <section class="page" id="game-setup-page">
+            <header class="sub-header">
+                <button class="back-btn" data-back="lobby-page" type="button">←</button>
+                <span>NUMBER BATTLE / PENGATURAN PERMAINAN</span>
+            </header>
+
+            <div class="content setup-content">
+                <span class="eyebrow">ANGKA RAHASIA</span>
+                <h2>Pilih<br>angka kamu.</h2>
+
+                <div class="setup-range-card">
+                    <span class="eyebrow">RENTANG YANG DIIZINKAN</span>
+                    <strong id="setup-range">1 – 100</strong>
+                    <p>Lawan tidak akan pernah melihat angka rahasia kamu.</p>
+                </div>
+
+                <label for="setup-secret-number">Angka rahasia kamu</label>
+                <input
+                    type="number"
+                    id="setup-secret-number"
+                    inputmode="numeric"
+                    placeholder="Masukkan angka kamu"
+                >
+
+                <button class="btn-primary full-width" id="submit-secret-btn" type="button">
+                    Kunci angka rahasia →
+                </button>
+
+                <div class="setup-progress" id="setup-progress" aria-live="polite">
+                    Angka kamu belum dikirim.
+                </div>
+
+                <div class="setup-note" id="setup-note">
+                    Setelah dikirim, angka rahasia tidak dapat diubah.
+                </div>
+            </div>
+        </section>
+
+        <!-- BATTLE ARENA -->
+        <section class="page" id="battle-page">
+            <header class="sub-header battle-header">
+                <div>
+                    <span class="eyebrow">NUMBER BATTLE / PERTANDINGAN LANGSUNG</span>
+                    <strong id="battle-room-code">RUANG ------</strong>
+                </div>
+                <span class="battle-round" id="battle-round">RONDE 1</span>
+            </header>
+
+            <div class="battle-content">
+                <div class="battle-status" id="battle-status" aria-live="polite">
+                    Menyiapkan pertandingan...
+                </div>
+
+                <div class="battle-players">
+                    <article class="battle-player-card mine">
+                        <div class="battle-player-top">
+                            <span class="eyebrow">KAMU</span>
+                            <span class="turn-indicator" id="my-turn-indicator">GILIRAN KAMU</span>
+                        </div>
+                        <strong class="battle-player-name" id="my-player-name">Pemain 01</strong>
+                        <div class="battle-stat-row">
+                            <div><span>RENTANG KAMU</span><strong id="my-range">—</strong></div>
+                            <div><span>KESEMPATAN</span><strong id="my-attempts">0 / 5</strong></div>
+                        </div>
+                        <div class="battle-secret-display">
+                            <span>ANGKA RAHASIA KAMU</span>
+                            <strong id="my-secret-number">—</strong>
+                        </div>
+                    </article>
+
+                    <article class="battle-player-card">
+                        <div class="battle-player-top">
+                            <span class="eyebrow">LAWAN</span>
+                            <span class="turn-indicator waiting" id="opponent-turn-indicator">MENUNGGU</span>
+                        </div>
+                        <strong class="battle-player-name" id="opponent-player-name">Lawan</strong>
+                        <div class="battle-stat-row">
+                            <div><span>RENTANG RAHASIA</span><strong>TERSEMBUNYI</strong></div>
+                            <div><span>KESEMPATAN</span><strong id="opponent-attempts">0 / 5</strong></div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="guess-panel" id="guess-panel">
+                    <span class="eyebrow" id="guess-mode-label">SAATNYA MENEBAK</span>
+                    <h2 id="guess-title">Temukan<br>angkanya.</h2>
+                    <p id="guess-description">Gunakan petunjuk untuk mempersempit rentang angka kamu.</p>
+                    <label for="battle-guess-input" id="battle-guess-label">Tebakan kamu</label>
+                    <input type="number" id="battle-guess-input" inputmode="numeric" placeholder="Masukkan angka">
+                    <button class="btn-primary full-width" id="submit-guess-btn" type="button" disabled>
+                        Kirim tebakan →
+                    </button>
+                    <div class="guess-feedback" id="guess-feedback" aria-live="polite">Menunggu kondisi permainan...</div>
+                </div>
+
+                <div class="battle-history-section">
+                    <div class="battle-history-heading">
+                        <span class="eyebrow">RIWAYAT PERTANDINGAN</span>
+                        <span id="history-count">0 tebakan</span>
+                    </div>
+                    <div id="battle-history" class="battle-history">
+                        <p class="history-empty">Belum ada tebakan. Jadilah yang pertama.</p>
+                    </div>
+                </div>
+
+                <div class="battle-result" id="battle-result" hidden>
+                    <span class="eyebrow">HASIL PERTANDINGAN</span>
+                    <h2 id="battle-result-title">Pertandingan selesai.</h2>
+                    <p id="battle-result-description"></p>
+                    <button class="btn-primary full-width" id="battle-home-btn" type="button">Kembali ke Beranda</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
